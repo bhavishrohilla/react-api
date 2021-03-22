@@ -1,13 +1,14 @@
 import './App.css';
+import React, { Component } from 'react';
 
 class App extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
   
     this.state = {
-      items= [],  
-      isLoaded= false,
+      items : [],  
+      isLoaded : false,
     }
   }
   componentDidMount() {
@@ -22,11 +23,23 @@ class App extends Component {
       });
   }
   render() {
-    return (
-      <div className="App">
-        
-      </div>
-    );
+    var { isLoaded, items } = this.state;
+    if(!isLoaded) {
+      return <div>Loading...</div>
+    }
+    else{
+      return (
+        <div className="App">
+          <ul>
+            {items.map(item => (
+              <li key={item.id}>
+                Name: {item.name} | Email: {item.email}
+              </li>
+            ))};
+          </ul>
+        </div>
+      );
+    }
   } 
 }
 
